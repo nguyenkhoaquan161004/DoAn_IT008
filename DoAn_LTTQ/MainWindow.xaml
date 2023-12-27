@@ -30,7 +30,7 @@
 
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\Admin\Downloads\alex-shuper-8XDqoAmI4iU-unsplash.jpg"></ImageBrush>
+            <ImageBrush ImageSource="C:\Users\asus\OneDrive\Hình ảnh\Saved Pictures\_0018_Pencil.ico"></ImageBrush>
         </Border.Background>
         <Border CornerRadius="10"
         BorderThickness="5"
