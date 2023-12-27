@@ -20,7 +20,7 @@
 
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\Admin\Downloads\alex-shuper-8XDqoAmI4iU-unsplash.jpg"></ImageBrush>
+            <ImageBrush ImageSource="C:\Users\USER\DoAn_IT008\image.jpg"></ImageBrush>
         </Border.Background>
     <Border CornerRadius="10"
             BorderThickness="5"

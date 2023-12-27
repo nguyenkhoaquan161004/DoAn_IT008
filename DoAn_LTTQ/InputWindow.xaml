@@ -27,7 +27,7 @@
     </i:Interaction.Triggers>
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\Admin\Downloads\alex-shuper-8XDqoAmI4iU-unsplash.jpg"></ImageBrush>
+            <ImageBrush ImageSource="C:\Users\USER\DoAn_IT008\image.jpg"></ImageBrush>
         </Border.Background>
         <Border CornerRadius="10"
     BorderThickness="5"
@@ -81,7 +81,7 @@
                             <TextBox Text="{Binding Type}"
                                 VerticalAlignment="Center" Width="230" FontSize="15" FontWeight="bold"
                                 materialDesign:HintAssist.Hint="Kiểu thu chi" Margin="0 0 0 15"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="TextBox_TextChanged"/>
                         </materialDesign:Card>
                     </Grid>
 
