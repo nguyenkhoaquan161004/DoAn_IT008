@@ -27,7 +27,9 @@
     </i:Interaction.Triggers>
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\asus\OneDrive\Hình ảnh\Saved Pictures\_0018_Pencil.ico"></ImageBrush>
+
+            <ImageBrush ImageSource="https://github.com/nguyenkhoaquan161004/DoAn_IT008/blob/main/image.jpg"></ImageBrush>
+
         </Border.Background>
         <Border CornerRadius="10"
     BorderThickness="5"
@@ -81,7 +83,7 @@
                             <TextBox Text="{Binding Type}"
                                 VerticalAlignment="Center" Width="230" FontSize="15" FontWeight="bold"
                                 materialDesign:HintAssist.Hint="Kiểu thu chi" Margin="0 0 0 15"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="TextBox_TextChanged"/>
                         </materialDesign:Card>
                     </Grid>
 

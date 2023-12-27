@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QUAN_LY_CHI_TIEUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNT_USERNAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID_USER" Type="int" />
+          <Property Name="ACCOUNT_PASSWORD" Type="nvarchar" MaxLength="200" />
+          <Property Name="ACCOUNT_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE_CREATED" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INPUT">
+          <Key>
+            <PropertyRef Name="INPUT_ID" />
+          </Key>
+          <Property Name="INPUT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_INPUT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INPUT_INFOR">
+          <Key>
+            <PropertyRef Name="INPUT_INFOR_ID" />
+          </Key>
+          <Property Name="INPUT_INFOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INPUT_ID" Type="int" />
+          <Property Name="ACCOUNT_ID" Type="int" />
+          <Property Name="MONEY_ID" Type="int" />
+          <Property Name="TYPE_INPUT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PERIODIC" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MONEY_">
+          <Key>
+            <PropertyRef Name="MONEY_ID" />
+          </Key>
+          <Property Name="MONEY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AMOUNT" Type="float" />
+          <Property Name="UNIT" Type="int" />
+        </EntityType>
+        <EntityType Name="OUTPUT">
+          <Key>
+            <PropertyRef Name="OUTPUT_ID" />
+          </Key>
+          <Property Name="OUTPUT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_OUTPUT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OUTPUT_INFOR">
+          <Key>
+            <PropertyRef Name="OUTPUT_INFOR_ID" />
+          </Key>
+          <Property Name="OUTPUT_INFOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OUTPUT_ID" Type="int" />
+          <Property Name="ACCOUNT_ID" Type="int" />
+          <Property Name="MONEY_ID" Type="int" />
+          <Property Name="TYPE_OUTPUT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PAY" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="USER_">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FULL_NAME" Type="nvarchar(max)" />
+          <Property Name="NUMBER_PHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="MAIL" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_ACC_USER">
+          <End Role="USER_" Type="Self.USER_" Multiplicity="0..1" />
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="ACCOUNT">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_ACC">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_IN">
+          <End Role="INPUT" Type="Self.INPUT" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INPUT">
+              <PropertyRef Name="INPUT_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="INPUT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_MN">
+          <End Role="MONEY_" Type="Self.MONEY_" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEY_">
+              <PropertyRef Name="MONEY_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="MONEY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_ACC">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_MN">
+          <End Role="MONEY_" Type="Self.MONEY_" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEY_">
+              <PropertyRef Name="MONEY_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="MONEY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_OU">
+          <End Role="OUTPUT" Type="Self.OUTPUT" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OUTPUT">
+              <PropertyRef Name="OUTPUT_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="OUTPUT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUAN_LY_CHI_TIEUModelStoreContainer">
+          <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INPUT" EntityType="Self.INPUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INPUT_INFOR" EntityType="Self.INPUT_INFOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MONEY_" EntityType="Self.MONEY_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OUTPUT" EntityType="Self.OUTPUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OUTPUT_INFOR" EntityType="Self.OUTPUT_INFOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_" EntityType="Self.USER_" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ACC_USER" Association="Self.FK_ACC_USER">
+            <End Role="USER_" EntitySet="USER_" />
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_ACC" Association="Self.FK_INF_ACC">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_IN" Association="Self.FK_INF_IN">
+            <End Role="INPUT" EntitySet="INPUT" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_MN" Association="Self.FK_INF_MN">
+            <End Role="MONEY_" EntitySet="MONEY_" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_ACC" Association="Self.FK_OUF_ACC">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_MN" Association="Self.FK_OUF_MN">
+            <End Role="MONEY_" EntitySet="MONEY_" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_OU" Association="Self.FK_OUF_OU">
+            <End Role="OUTPUT" EntitySet="OUTPUT" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUAN_LY_CHI_TIEUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNT_USERNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID_USER" Type="Int32" />
+          <Property Name="ACCOUNT_PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ACCOUNT_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_CREATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="USER_" Relationship="Self.FK_ACC_USER" FromRole="ACCOUNT" ToRole="USER_" />
+          <NavigationProperty Name="INPUT_INFOR" Relationship="Self.FK_INF_ACC" FromRole="ACCOUNT" ToRole="INPUT_INFOR" />
+          <NavigationProperty Name="OUTPUT_INFOR" Relationship="Self.FK_OUF_ACC" FromRole="ACCOUNT" ToRole="OUTPUT_INFOR" />
+        </EntityType>
+        <EntityType Name="INPUT">
+          <Key>
+            <PropertyRef Name="INPUT_ID" />
+          </Key>
+          <Property Name="INPUT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_INPUT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="INPUT_INFOR" Relationship="Self.FK_INF_IN" FromRole="INPUT" ToRole="INPUT_INFOR" />
+        </EntityType>
+        <EntityType Name="INPUT_INFOR">
+          <Key>
+            <PropertyRef Name="INPUT_INFOR_ID" />
+          </Key>
+          <Property Name="INPUT_INFOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INPUT_ID" Type="Int32" />
+          <Property Name="ACCOUNT_ID" Type="Int32" />
+          <Property Name="MONEY_ID" Type="Int32" />
+          <Property Name="TYPE_INPUT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PERIODIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACCOUNT" Relationship="Self.FK_INF_ACC" FromRole="INPUT_INFOR" ToRole="ACCOUNT" />
+          <NavigationProperty Name="INPUT" Relationship="Self.FK_INF_IN" FromRole="INPUT_INFOR" ToRole="INPUT" />
+          <NavigationProperty Name="MONEY_" Relationship="Self.FK_INF_MN" FromRole="INPUT_INFOR" ToRole="MONEY_" />
+        </EntityType>
+        <EntityType Name="MONEY_">
+          <Key>
+            <PropertyRef Name="MONEY_ID" />
+          </Key>
+          <Property Name="MONEY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AMOUNT" Type="Double" />
+          <Property Name="UNIT" Type="Int32" />
+          <NavigationProperty Name="INPUT_INFOR" Relationship="Self.FK_INF_MN" FromRole="MONEY_" ToRole="INPUT_INFOR" />
+          <NavigationProperty Name="OUTPUT_INFOR" Relationship="Self.FK_OUF_MN" FromRole="MONEY_" ToRole="OUTPUT_INFOR" />
+        </EntityType>
+        <EntityType Name="OUTPUT">
+          <Key>
+            <PropertyRef Name="OUTPUT_ID" />
+          </Key>
+          <Property Name="OUTPUT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_OUTPUT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OUTPUT_INFOR" Relationship="Self.FK_OUF_OU" FromRole="OUTPUT" ToRole="OUTPUT_INFOR" />
+        </EntityType>
+        <EntityType Name="OUTPUT_INFOR">
+          <Key>
+            <PropertyRef Name="OUTPUT_INFOR_ID" />
+          </Key>
+          <Property Name="OUTPUT_INFOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OUTPUT_ID" Type="Int32" />
+          <Property Name="ACCOUNT_ID" Type="Int32" />
+          <Property Name="MONEY_ID" Type="Int32" />
+          <Property Name="TYPE_OUTPUT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PAY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACCOUNT" Relationship="Self.FK_OUF_ACC" FromRole="OUTPUT_INFOR" ToRole="ACCOUNT" />
+          <NavigationProperty Name="MONEY_" Relationship="Self.FK_OUF_MN" FromRole="OUTPUT_INFOR" ToRole="MONEY_" />
+          <NavigationProperty Name="OUTPUT" Relationship="Self.FK_OUF_OU" FromRole="OUTPUT_INFOR" ToRole="OUTPUT" />
+        </EntityType>
+        <EntityType Name="USER_">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NUMBER_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACCOUNTs" Relationship="Self.FK_ACC_USER" FromRole="USER_" ToRole="ACCOUNT" />
+        </EntityType>
+        <Association Name="FK_ACC_USER">
+          <End Role="USER_" Type="Self.USER_" Multiplicity="0..1" />
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="ACCOUNT">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_ACC">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_ACC">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_IN">
+          <End Role="INPUT" Type="Self.INPUT" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INPUT">
+              <PropertyRef Name="INPUT_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="INPUT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INF_MN">
+          <End Role="MONEY_" Type="Self.MONEY_" Multiplicity="0..1" />
+          <End Role="INPUT_INFOR" Type="Self.INPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEY_">
+              <PropertyRef Name="MONEY_ID" />
+            </Principal>
+            <Dependent Role="INPUT_INFOR">
+              <PropertyRef Name="MONEY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_MN">
+          <End Role="MONEY_" Type="Self.MONEY_" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEY_">
+              <PropertyRef Name="MONEY_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="MONEY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OUF_OU">
+          <End Role="OUTPUT" Type="Self.OUTPUT" Multiplicity="0..1" />
+          <End Role="OUTPUT_INFOR" Type="Self.OUTPUT_INFOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OUTPUT">
+              <PropertyRef Name="OUTPUT_ID" />
+            </Principal>
+            <Dependent Role="OUTPUT_INFOR">
+              <PropertyRef Name="OUTPUT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUAN_LY_CHI_TIEUEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
+          <EntitySet Name="INPUTs" EntityType="Self.INPUT" />
+          <EntitySet Name="INPUT_INFOR" EntityType="Self.INPUT_INFOR" />
+          <EntitySet Name="MONEY_" EntityType="Self.MONEY_" />
+          <EntitySet Name="OUTPUTs" EntityType="Self.OUTPUT" />
+          <EntitySet Name="OUTPUT_INFOR" EntityType="Self.OUTPUT_INFOR" />
+          <EntitySet Name="USER_" EntityType="Self.USER_" />
+          <AssociationSet Name="FK_ACC_USER" Association="Self.FK_ACC_USER">
+            <End Role="USER_" EntitySet="USER_" />
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_ACC" Association="Self.FK_INF_ACC">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_ACC" Association="Self.FK_OUF_ACC">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_IN" Association="Self.FK_INF_IN">
+            <End Role="INPUT" EntitySet="INPUTs" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INF_MN" Association="Self.FK_INF_MN">
+            <End Role="MONEY_" EntitySet="MONEY_" />
+            <End Role="INPUT_INFOR" EntitySet="INPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_MN" Association="Self.FK_OUF_MN">
+            <End Role="MONEY_" EntitySet="MONEY_" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OUF_OU" Association="Self.FK_OUF_OU">
+            <End Role="OUTPUT" EntitySet="OUTPUTs" />
+            <End Role="OUTPUT_INFOR" EntitySet="OUTPUT_INFOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUAN_LY_CHI_TIEUModelStoreContainer" CdmEntityContainer="QUAN_LY_CHI_TIEUEntities">
+          <EntitySetMapping Name="ACCOUNTs">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.ACCOUNT">
+              <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="ACCOUNT_USERNAME" ColumnName="ACCOUNT_USERNAME" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ACCOUNT_PASSWORD" ColumnName="ACCOUNT_PASSWORD" />
+                <ScalarProperty Name="ACCOUNT_TYPE" ColumnName="ACCOUNT_TYPE" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INPUTs">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.INPUT">
+              <MappingFragment StoreEntitySet="INPUT">
+                <ScalarProperty Name="INPUT_ID" ColumnName="INPUT_ID" />
+                <ScalarProperty Name="DATE_INPUT" ColumnName="DATE_INPUT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INPUT_INFOR">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.INPUT_INFOR">
+              <MappingFragment StoreEntitySet="INPUT_INFOR">
+                <ScalarProperty Name="INPUT_INFOR_ID" ColumnName="INPUT_INFOR_ID" />
+                <ScalarProperty Name="INPUT_ID" ColumnName="INPUT_ID" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+                <ScalarProperty Name="TYPE_INPUT" ColumnName="TYPE_INPUT" />
+                <ScalarProperty Name="PERIODIC" ColumnName="PERIODIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MONEY_">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.MONEY_">
+              <MappingFragment StoreEntitySet="MONEY_">
+                <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OUTPUTs">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.OUTPUT">
+              <MappingFragment StoreEntitySet="OUTPUT">
+                <ScalarProperty Name="OUTPUT_ID" ColumnName="OUTPUT_ID" />
+                <ScalarProperty Name="DATE_OUTPUT" ColumnName="DATE_OUTPUT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OUTPUT_INFOR">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.OUTPUT_INFOR">
+              <MappingFragment StoreEntitySet="OUTPUT_INFOR">
+                <ScalarProperty Name="OUTPUT_INFOR_ID" ColumnName="OUTPUT_INFOR_ID" />
+                <ScalarProperty Name="OUTPUT_ID" ColumnName="OUTPUT_ID" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+                <ScalarProperty Name="TYPE_OUTPUT" ColumnName="TYPE_OUTPUT" />
+                <ScalarProperty Name="PAY" ColumnName="PAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_">
+            <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.USER_">
+              <MappingFragment StoreEntitySet="USER_">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="NUMBER_PHONE" ColumnName="NUMBER_PHONE" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
