@@ -24,15 +24,13 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName = mainWindow}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Border CornerRadius="12">
         <Border.Background>
-
-            <ImageBrush ImageSource="https://github.com/nguyenkhoaquan161004/DoAn_IT008/blob/main/image.jpg"></ImageBrush>
-
+            <ImageBrush ImageSource="C:\Users\Admin\Downloads\alex-shuper-8XDqoAmI4iU-unsplash.jpg"></ImageBrush>
         </Border.Background>
         <Border CornerRadius="10"
         BorderThickness="5"

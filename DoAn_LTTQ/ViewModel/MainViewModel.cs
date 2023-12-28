@@ -20,47 +20,28 @@ namespace DoAn_LTTQ.ViewModel
         public ICommand OutputCommand { get; set; }
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 IsLoaded = true;
-               if (p == null) { return; }
-                p.Hide();
-                
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null)
-                    return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM.IsLogin)
-                {
-                    p.Show();
-                }
-                else
-                {
-                    p.Close();
-            
-                }
-          
             }
         );
             MoneyCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 MoneyWindow moneyWindow = new MoneyWindow();
                 moneyWindow.ShowDialog();
-    
             }
         );
             UserCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 UserWindow userWindow = new UserWindow();
                 userWindow.ShowDialog();
-        
             }
         );
             AccountCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 AccountWindow accountWindow = new AccountWindow();
-                
                 accountWindow.ShowDialog();
             }
         );

@@ -23,10 +23,5 @@ namespace DoAn_LTTQ
         {
             InitializeComponent();
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
