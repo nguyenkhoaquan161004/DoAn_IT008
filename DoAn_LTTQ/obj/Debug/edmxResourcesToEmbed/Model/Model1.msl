@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QUAN_LY_CHI_TIEUModelStoreContainer" CdmEntityContainer="QUAN_LY_CHI_TIEUEntities">
+    <EntitySetMapping Name="ACCOUNTs">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.ACCOUNT">
+        <MappingFragment StoreEntitySet="ACCOUNT">
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="ACCOUNT_USERNAME" ColumnName="ACCOUNT_USERNAME" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="ACCOUNT_PASSWORD" ColumnName="ACCOUNT_PASSWORD" />
+          <ScalarProperty Name="ACCOUNT_TYPE" ColumnName="ACCOUNT_TYPE" />
+          <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INPUTs">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.INPUT">
+        <MappingFragment StoreEntitySet="INPUT">
+          <ScalarProperty Name="INPUT_ID" ColumnName="INPUT_ID" />
+          <ScalarProperty Name="DATE_INPUT" ColumnName="DATE_INPUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INPUT_INFOR">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.INPUT_INFOR">
+        <MappingFragment StoreEntitySet="INPUT_INFOR">
+          <ScalarProperty Name="INPUT_INFOR_ID" ColumnName="INPUT_INFOR_ID" />
+          <ScalarProperty Name="INPUT_ID" ColumnName="INPUT_ID" />
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+          <ScalarProperty Name="TYPE_INPUT" ColumnName="TYPE_INPUT" />
+          <ScalarProperty Name="PERIODIC" ColumnName="PERIODIC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MONEY_">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.MONEY_">
+        <MappingFragment StoreEntitySet="MONEY_">
+          <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OUTPUTs">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.OUTPUT">
+        <MappingFragment StoreEntitySet="OUTPUT">
+          <ScalarProperty Name="OUTPUT_ID" ColumnName="OUTPUT_ID" />
+          <ScalarProperty Name="DATE_OUTPUT" ColumnName="DATE_OUTPUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OUTPUT_INFOR">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.OUTPUT_INFOR">
+        <MappingFragment StoreEntitySet="OUTPUT_INFOR">
+          <ScalarProperty Name="OUTPUT_INFOR_ID" ColumnName="OUTPUT_INFOR_ID" />
+          <ScalarProperty Name="OUTPUT_ID" ColumnName="OUTPUT_ID" />
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="MONEY_ID" ColumnName="MONEY_ID" />
+          <ScalarProperty Name="TYPE_OUTPUT" ColumnName="TYPE_OUTPUT" />
+          <ScalarProperty Name="PAY" ColumnName="PAY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_">
+      <EntityTypeMapping TypeName="QUAN_LY_CHI_TIEUModel.USER_">
+        <MappingFragment StoreEntitySet="USER_">
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="NUMBER_PHONE" ColumnName="NUMBER_PHONE" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

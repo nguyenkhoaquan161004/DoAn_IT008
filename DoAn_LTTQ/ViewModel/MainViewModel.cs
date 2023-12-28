@@ -20,32 +20,47 @@ namespace DoAn_LTTQ.ViewModel
         public ICommand OutputCommand { get; set; }
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 IsLoaded = true;
+               if (p == null) { return; }
+                p.Hide();
+                
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
-                Console.WriteLine("1");
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                }
+                else
+                {
+                    p.Close();
+            
+                }
+          
             }
         );
             MoneyCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 MoneyWindow moneyWindow = new MoneyWindow();
                 moneyWindow.ShowDialog();
-                Console.WriteLine("2");
+    
             }
         );
             UserCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 UserWindow userWindow = new UserWindow();
                 userWindow.ShowDialog();
-                Console.WriteLine("3");
+        
             }
         );
             AccountCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 AccountWindow accountWindow = new AccountWindow();
-                Console.WriteLine("4");
+                
                 accountWindow.ShowDialog();
             }
         );
@@ -53,14 +68,12 @@ namespace DoAn_LTTQ.ViewModel
             {
                 InputWindow inputWindow = new InputWindow();
                 inputWindow.ShowDialog();
-                Console.WriteLine("5");
             }
         );
             OutputCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 OutputWindow outputWindow = new OutputWindow();
                 outputWindow.ShowDialog();
-                Console.WriteLine("6");
             }
         );
         }

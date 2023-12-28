@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\IT008\DoAn_IT008\DoAn_IT008\DoAn_LTTQ\obj\Debug\
+D:\IT008\DoAn_IT008\doAn_IT008\DoAn_LTTQ\obj\Debug\
 DoAn_LTTQ
 none
 false
 DEBUG;TRACE
-D:\IT008\DoAn_IT008\DoAn_IT008\DoAn_LTTQ\App.xaml
+D:\IT008\DoAn_IT008\doAn_IT008\DoAn_LTTQ\App.xaml
 101890976855
-
-16833245780
-164-1306623202
+2739969757
+27-1614547300
+168422222381
 AccountWindow.xaml;InputWindow.xaml;LoginWindow.xaml;MainWindow.xaml;MoneyWindow.xaml;OutputWindow.xaml;ResourceXAML\mainResource.xaml;UserControl_DoAn\ControlBarUC.xaml;UserControl_DoAn\ToolBarUC.xaml;UserWindow.xaml;
 
-True
+False
 
